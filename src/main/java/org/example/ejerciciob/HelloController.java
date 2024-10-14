@@ -1,3 +1,5 @@
+package org.example.ejerciciob;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
-public class PleaseProvideControllerClassName {
+public class HelloController {
 
     @FXML
     private Button btAgregar;
