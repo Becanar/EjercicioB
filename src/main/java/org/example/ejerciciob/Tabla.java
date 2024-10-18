@@ -7,8 +7,16 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+/**
+ * Clase principal que extiende de Application para ejecutar la aplicación de la tabla de personas.
+ */
 public class Tabla extends Application {
+    /**
+     * Método de inicio que se ejecuta al lanzar la aplicación JavaFX.
+     * Carga la interfaz gráfica desde un archivo FXML y configura el icono y título de la ventana.
+     * @param stage El escenario principal de la aplicación.
+     * @throws IOException Si ocurre un error al cargar el archivo FXML.
+     */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Tabla.class.getResource("hello-view.fxml"));
@@ -25,7 +33,10 @@ public class Tabla extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
+    /**
+     * Método main que lanza la aplicación.
+     * @param args Argumentos de la línea de comandos.
+     */
     public static void main(String[] args) {
         launch();
     }

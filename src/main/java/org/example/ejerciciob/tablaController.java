@@ -11,6 +11,10 @@ import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 
+/**
+ * Controlador de la vista de la tabla de personas.
+ * Permite gestionar la adición de personas y la interacción con los componentes de la vista.
+ */
 public class tablaController {
 
     @FXML
@@ -53,13 +57,19 @@ public class tablaController {
     private TextField txtNombre;
 
     private ObservableList<Persona> personas = FXCollections.observableArrayList();
-
+    /**
+     * Inicializa las columnas de la tabla con los valores de los atributos de la clase Persona.
+     * Este método se ejecuta automáticamente al cargar la vista FXML.
+     */
     public void initialize() {
         columnaNombre.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getNombre()));
         columnaApellidos.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getApellidos()));
         columnaEdad.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getEdad()));
     }
-
+    /**
+     * Muestra una alerta de error con una lista de mensajes de error.
+     * @param lst Lista de errores a mostrar en la alerta.
+     */
     private void mostrarAlertError(ArrayList<String> lst) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.initOwner(btAgregar.getScene().getWindow());
@@ -72,7 +82,9 @@ public class tablaController {
         alert.setContentText(error);
         alert.showAndWait();
     }
-
+    /**
+     * Muestra una ventana de confirmación indicando que la persona fue agregada correctamente.
+     */
     private void mostrarVentanaOK() {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.initOwner(btAgregar.getScene().getWindow());
@@ -81,7 +93,11 @@ public class tablaController {
         alerta.setContentText("Persona agregada correctamente.");
         alerta.showAndWait();
     }
-
+    /**
+     * Método que se ejecuta al hacer clic en el botón para agregar una persona.
+     * Verifica si los campos son válidos y, si lo son, añade la persona a la tabla.
+     * @param event Evento de acción asociado al clic del botón.
+     */
     @FXML
     void agregarPersona(ActionEvent event) {
         boolean error=false;
@@ -115,6 +131,4 @@ public class tablaController {
                 mostrarVentanaOK();}
             }
     }
-
-
 }
