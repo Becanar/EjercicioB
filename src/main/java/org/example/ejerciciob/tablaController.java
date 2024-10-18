@@ -1,11 +1,13 @@
 package org.example.ejerciciob;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Window;
 
 import java.util.ArrayList;
 
@@ -15,13 +17,13 @@ public class tablaController {
     private Button btAgregar;
 
     @FXML
-    private TableColumn<?, ?> columnaApellidos;
+    private TableColumn<Persona,String> columnaApellidos;
 
     @FXML
-    private TableColumn<?, ?> columnaEdad;
+    private TableColumn<Persona,Integer> columnaEdad;
 
     @FXML
-    private TableColumn<?, ?> columnaNombre;
+    private TableColumn<Persona,String> columnaNombre;
 
     @FXML
     private Label lblApellidos;
@@ -39,7 +41,7 @@ public class tablaController {
     private BorderPane panelRoot;
 
     @FXML
-    private TableView<?> tablaVista;
+    private TableView<Persona> tablaVista;
 
     @FXML
     private TextField txtApellidos;
@@ -50,9 +52,17 @@ public class tablaController {
     @FXML
     private TextField txtNombre;
 
-    private void mostrarAlertError(Window win, ArrayList<String> lst) {
+    private ObservableList<Persona> personas = FXCollections.observableArrayList();
+
+    public void initialize() {
+        columnaNombre.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getNombre()));
+        columnaApellidos.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getApellidos()));
+        columnaEdad.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getEdad()));
+    }
+
+    private void mostrarAlertError(ArrayList<String> lst) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.initOwner(win);
+        alert.initOwner(btAgregar.getScene().getWindow());
         alert.setHeaderText(null);
         alert.setTitle("Error");
         String error="";
@@ -65,6 +75,8 @@ public class tablaController {
 
     private void mostrarVentanaOK() {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.initOwner(btAgregar.getScene().getWindow());
+        alerta.setHeaderText(null);
         alerta.setTitle("Info");
         alerta.setContentText("Persona agregada correctamente.");
         alerta.showAndWait();
@@ -87,24 +99,21 @@ public class tablaController {
             error=true;
         }
         if(error){
-            mostrarAlertError(btAgregar.getScene().getWindow(),errores);
+            mostrarAlertError(errores);
         }else {
             Persona p=new Persona(txtNombre.getText(),txtApellidos.getText(),Integer.parseInt(txtEdad.getText()));
-            for (int i = 0; i < tablaVista.getItems().size(); i++) {
-                String nombreTabla = tablaVista.getColumns().get(0).getCellData(i).toString();
-                String apellidosTabla = tablaVista.getColumns().get(1).getCellData(i).toString();
-                int edadTabla = Integer.parseInt(tablaVista.getColumns().get(2).getCellData(i).toString());
-
-                if(p.equals(new Persona(nombreTabla,apellidosTabla,edadTabla))){
+            for(Persona persona:tablaVista.getItems()){
+                if(p.equals(persona)){
                     error=true;
                 }
             }
             if(error){
                 errores.add("La persona ya existe.");
-                mostrarAlertError(btAgregar.getScene().getWindow(),errores);
+                mostrarAlertError(errores);
             }else{
-            mostrarVentanaOK();}
-        }
+               tablaVista.getItems().add(p);
+                mostrarVentanaOK();}
+            }
     }
 
 

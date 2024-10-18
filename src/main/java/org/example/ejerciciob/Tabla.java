@@ -15,7 +15,7 @@ public class Tabla extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setResizable(false);
         try {
-            Image img = new Image(getClass().getResource("src/main/resources/org/example/ejerciciob/agenda.png").toString());
+            Image img = new Image(getClass().getResource("/org/example/ejerciciob/agenda.png").toString());
             stage.getIcons().add(img);
         } catch (Exception e) {
             System.out.println("Error al cargar la imagen: " + e.getMessage());
