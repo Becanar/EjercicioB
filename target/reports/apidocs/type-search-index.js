@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"org.example.ejerciciob","l":"Persona"},{"p":"org.example.ejerciciob","l":"Tabla"},{"p":"org.example.ejerciciob","l":"tablaController"}];updateSearchResults();
