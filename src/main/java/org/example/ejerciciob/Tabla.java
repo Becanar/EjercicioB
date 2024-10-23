@@ -21,7 +21,10 @@ public class Tabla extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Tabla.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setResizable(false);
+        stage.setMinHeight(425);
+        stage.setMinWidth(600);
+        stage.setMaxHeight(600);
+        stage.setMaxWidth(800);
         try {
             Image img = new Image(getClass().getResource("/org/example/ejerciciob/agenda.png").toString());
             stage.getIcons().add(img);
