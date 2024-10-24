@@ -1,4 +1,4 @@
-package org.example.ejerciciob;
+package org.example.ejerciciob.model;
 
 import java.util.Objects;
 /**

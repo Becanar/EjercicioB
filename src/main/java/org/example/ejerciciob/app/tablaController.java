@@ -1,4 +1,4 @@
-package org.example.ejerciciob;
+package org.example.ejerciciob.app;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import org.example.ejerciciob.model.Persona;
 
 import java.util.ArrayList;
 
